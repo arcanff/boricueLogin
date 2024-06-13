@@ -2,6 +2,7 @@
 import { Router } from "express";
 import dotenv from 'dotenv';
 import authController from '../controllers/authController.js';
+import method from '../middlewares/authorization.js';
 import fetch from "node-fetch";
 dotenv.config();
 
@@ -48,30 +49,26 @@ router.get('/T&C', (req, res) => {
 
 //DASHBOARD//
 
-router.get('/Inicio', (req, res) => {
+router.get('/Inicio', authController.isAuthenticated, async (req, res) => {
     res.render('dashInicio');
 });
 
-router.get('/Publicaciones', (req, res) => {
+router.get('/Publicaciones', authController.isAuthenticated, async (req, res) => {
     res.render('dashPublicaciones');
 });
 
-router.get('/CrearPublicacion', (req, res) => {
+router.get('/CrearPublicacion', authController.isAuthenticated, async (req, res) => {
     res.render('dashCrearPubli');
 });
 
-router.get('/EditarPublicacion', (req, res) => {
+router.get('/EditarPublicacion', authController.isAuthenticated, async (req, res) => {
     res.render('dashEditarPubli');
 });
 
-router.get('/Chat', (req, res) => {
+router.get('/Chat', authController.isAuthenticated, async (req, res) => {
     res.render('dashChat');
 });
 
-// perfil
-// router.get('/Perfil', async (req, res) => {
-//     res.render('dashPerfil');
-// });
 
 router.get('/Perfil', authController.isAuthenticated, async (req, res) => {
     if (!req.user) {
