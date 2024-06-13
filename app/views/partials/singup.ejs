@@ -1,0 +1,15 @@
+<form class="formulario__register" id="register-form" action="/register" method="POST">
+    <h2>Registrarse</h2>
+    <label for="iden">Identificacion</label><input type="number" name="id" placeholder="Identificación" required>
+    <label for="name">Nombres</label><input type="text" name="names" placeholder="Nombre completo" required>
+    <label for="dress">Dirección</label><input type="text" name="dress" placeholder="Dirección" required>
+    <label for="phone">Teléfono</label><input type="number" name="phon" placeholder="Teléfono" required>
+    <label for="mail">Correo</label><input type="email" name="mail" placeholder="Correo" required>
+    <label for="pass">Contraseña</label><input type="password" name="pass" placeholder="Contraseña" required>
+    <label for="Roles">Rol</label>
+    <select name="rol" id="Roles" required>
+        <option value="Usuario">Usuario</option>
+        <option value="Empresa">Empresa</option>
+    </select>
+    <button type="submit">Crear Cuenta</button>
+</form> 

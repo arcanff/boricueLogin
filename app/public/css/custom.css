@@ -1,0 +1,184 @@
+  .containerLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .login-tab, .register-tab {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    font-weight: bold;
+  }
+  
+  input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  
+  /* Estilos responsive */
+  @media screen and (max-width: 600px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .login-tab, .register-tab {
+      margin-bottom: 20px;
+    }
+  }
+  
+
+.NavBarTop{
+	height: 100px;
+}
+
+.BotonesSlider{
+    border: 2px solid #ffffff;
+    border-radius: 100px;
+}
+
+.IconosLateralesPServicios{
+    display: flex!important;
+    flex-direction: row-reverse;
+}
+
+.contenedorterminos {
+  display: flex;
+  justify-content: space-between;
+}
+.contenedorterminosizq {
+  flex: 1;
+  padding: 20px;
+}
+.contenedorterminosder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+.imagenterminos img {
+  max-width: 100px;
+  margin-bottom: 20px;
+}
+
+.BotonAñadir {
+  margin-top: 360px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+/* PERFIL */
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.profile-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+}
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profile-info {
+  flex: 1;
+}
+.profile-name {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.profile-description {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.profile-location {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.profile-company {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.profile-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* REPORTES */
+
+.table-container {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+/* CHAT */
+
+.chat-container {
+  display: flex;
+  max-width: 100%;
+}
+.user-list {
+  flex: 1;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+  max-width: 250px;
+  overflow-y: auto;
+}
+.chat-box {
+  flex: 2;
+  padding: 20px;
+}
+.message-container {
+  margin-bottom: 15px;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./partials/dashHead.ejs"); %>
+
+<body>
+
+    <%- include("./partials/dashMenu.ejs"); %>
+
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-image">
+                <img src="images/sena.jpg" alt="Imagen de Usuario">
+            </div>
+            <% if (datos) { %>
+                <div class="profile-info">
+                    <div class="profile-name">Nombre de Usuario: <%= datos.nombres %></div>
+                    <div class="profile-location">Dirección: <%= datos.direccion %></div>
+                    <div class="profile-company">Número de contacto: <%= datos.telefono %></div>
+                    <div class="profile-company">Correo de contacto: <%= datos.correo %></div>
+                    <div class="profile-buttons">
+                        <button class="btn btn-info"><a class="cart" href="/Reportes">Generar Reporte</a></button>
+                        <button class="btn btn-info"><a class="cart" href="/EditarPerfil">Editar Perfil</a></button>
+                    </div>
+                </div>
+            <% } else { %>
+                <p>Usuario no encontrado</p>
+            <% } %>
+        </div>
+    </div>
+    <%- include("./partials/dashFooter.ejs"); %>
+</body>
+</html>

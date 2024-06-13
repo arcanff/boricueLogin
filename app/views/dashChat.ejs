@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./partials/dashHead.ejs"); %>
+
+<body>
+
+    <%- include("./partials/dashMenu.ejs"); %>
+
+    <div class="container">
+        <div class="title-all text-center">
+            <h1>Chat</h1>
+            <p>Comunicate con otros usuarios</p>
+        </div>
+        <div class="chat-container">
+            <div class="user-list">
+                <h4>Usuarios</h4>
+                <ul class="list-group">
+                    <li class="list-group-item">Usuario 1</li>
+                    <li class="list-group-item">Usuario 2</li>
+                    <li class="list-group-item">Usuario 3</li>
+                    <!-- Agregar más usuarios aquí -->
+                </ul>
+            </div>
+            <div class="chat-box">
+                <div class="message-container">
+                    <strong>Usuario 1:</strong>
+                    <p>Hola, ¿cómo estás?</p>
+                </div>
+                <div class="message-container">
+                    <strong>Tú:</strong>
+                    <p>¡Hola! Estoy bien, gracias.</p>
+                </div>
+                <!-- Agregar más mensajes aquí -->
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Escribe tu mensaje...">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <%- include("./partials/dashFooter.ejs"); %>
+
+</body>
+</html>

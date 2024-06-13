@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./partials/head.ejs"); %>
+
+<body>
+   
+    <%- include("./partials/menu.ejs"); %>
+
+    <!-- Start Contact Us  -->
+    <div class="contact-box-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-sm-12">
+                    <div class="contact-form-right">
+                        <h2>Contactanos</h2>
+                        <p>Si tienes alguna duda, problema o tienes una sugerencia, llena este formulario y nosotros te contactaremos.</p>
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="Nombre Completo" required data-error="Porfavor digite su Nombre completo">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" placeholder="Correo electronico" id="email" class="form-control" name="name" required data-error="Porfavor digite su Correo electronico">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="subject" name="name" placeholder="Motivo o asunto" required data-error="Porfavor digite su Motivo o asunto">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea class="form-control" id="message" placeholder="Descripcion" rows="4" data-error="Porfavor digite su mensaje" required></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="submit-button text-center">
+                                        <button class="btn hvr-hover" id="submit" type="submit">Enviar</button>
+                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+				<div class="col-lg-4 col-sm-12">
+                    <div class="contact-info-left">
+                        <h2>Informacion de Contacto</h2>
+                        <p>Acá te dejamos unos medios para que nos contactes en caso de ser necesario</p>
+                        <ul>
+                            <li>
+                                <p><i class="fas fa-map-marker-alt"></i>Direccion: Calatrava Itagui Cl. 63 #58B-03</p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-phone-square"></i>Numero telefonico: +57 313 664 0809</p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-envelope"></i>Correo: BoricueTeAyuda@Boricue.com</p>
+                            </li>
+                        </ul>
+                            <div>
+                                <iframe class="position-relative w-100"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.624483295141!2d-75.60856782533112!3d6.180989193806478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e46823b07fa76e7%3A0xd858c9c2ddf4b118!2sSENA%20Complejo%20Sur%20Itag%C3%BC%C3%AD!5e0!3m2!1ses!2sco!4v1684982801092!5m2!1ses!2sco" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                                    frameborder="0" style="height: 205px; border:0;" allowfullscreen="" aria-hidden="false"
+                                    tabindex="0"></iframe>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Cart -->
+
+    <%- include("./partials/footer.ejs"); %>
+        
+</body>
+</html>

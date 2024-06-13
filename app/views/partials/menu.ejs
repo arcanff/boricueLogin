@@ -1,0 +1,90 @@
+<!-- Start Main Top -->
+<header class="main-header">
+    <!-- Start Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-default bootsnav">
+        <div class="container NavBarTop">
+            <!-- Start Header Navigation -->
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                  <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="/"><img src="images/LogoBoricueCircular.png" width="100px" height="100px" class="logo" alt=""></a>
+            </div>
+            <!-- End Header Navigation -->
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                    <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/acerca">Acerca de</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/servicios">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contactanos">Contactanos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/preguntas">Preguntas</a></li>  
+                    <li class="nav-item"><a class="nav-link" href="/login">Aplicacion boricue</a></li>
+                </ul>
+            </div>
+        </div> 
+    </nav>
+    <!-- End Navigation -->
+
+    <!-- Modal -->
+  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content bg-light">
+      <div class="modal-header">
+        <h3>Registro</h3>
+        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="signup-form">
+
+          <label for="email">Coreo electronico:</label>
+          <input type="text" id="signup-email" class="form-control mb-3" placeholder="Correo" required>
+
+          <label for="password">Contraseña:</label>
+          <input type="password" id="signup-password" class="form-control mb-3" placeholder="Contraseña" required>
+
+          <label">Asegurese de leer los <a href="/T&C">Terminos y condiciones</a> antes de crear una cuenta</label><br><br>
+
+          <button type="submit" class="btn btn-primary w-100 mb-4">Crear cuenta</button>
+
+          <label">Puedes ingresar directamente utilizando tu cuenta de Google, Facebook y GitHub desde la pestaña de inicio, si tienes alguna duda de este servicio
+          contactanos</label>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalSignin"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Ingresa</h3>
+        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="login-form">
+          <label for="email">Correo electronico</label>
+          <input type="text" id="login-email" class="form-control mb-3" placeholder="Correo" required>
+          <label for="password">Contraseña:</label>
+          <input type="password" id="login-password" class="form-control mb-3" placeholder="Contraseña" required>
+
+          <button type="submit" class="btn btn-success w-100 mb-4">Ingresar</button>
+
+          <label">Tambien puedes iniciar sesion con:</label>
+
+          <button type="button" class="btn btn-white" id="googleLogin"><img src="images/Google.png" width="50px" height="50px" class="logo" alt=""></button>
+          <button type="button" class="btn btn-white" id="facebookLogin"><img src="images/Facebook.png" width="50px" height="50px" class="logo" alt=""></button>
+          <button type="button" class="btn btn-white" id="githubLogin"><img src="images/GitHub.png" width="50px" height="50px" class="logo" alt=""></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</header>
+<!-- End Main Top -->

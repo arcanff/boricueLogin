@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("./partials/head.ejs"); %>
+
+<body>
+
+    <%- include("./partials/menu.ejs"); %>
+
+    <!-- Services Start -->
+    <div class="FondoDiv container-fluid py-5">
+        <div class="container">
+            <div class="border-start border-5 border-primary ps-5 mb-5" style="max-width: 600px;">
+                <h1 class="display-1 text-uppercase text-titulo mb-lg-4">Servicios</h1>
+                <p class="fs-4 text-parrafo mb-lg-4">Observa un poco de lo que Boricue puede ofrecerte como aplicación</p>
+            </div>
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <div class="service-item bg-light d-flex p-4 IconosLateralesPServicios">
+                        <i><img src="images/IconoVenta.png" width="50px" height="50px"></i>
+                        <div>
+                            <h5 class="text-uppercase mb-3">Venta</h5>
+                            <p>Publica tus desechos o materiales y encuentra compradores interesados en ellos, comuniquesen y realicen la compra</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-item bg-light d-flex p-4 IconosLateralesPServicios">
+                        <i><img src="images/ReciclajeIcono.png" width="50px" height="50px"></i>
+                        <div>
+                            <h5 class="text-uppercase mb-3">Donacion</h5>
+                            <p>¿Tienes desechos guardados? ¿Necesitas deshacerte de algun material? Donalo a una empresa o usuario</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-item bg-light d-flex p-4 IconosLateralesPServicios">
+                        <i><img src="images/IconoIntercambio.png" width="50px" height="50px"></i>
+                        <div>
+                            <h5 class="text-uppercase mb-3">Intercambio</h5>
+                            <p>Habla con un usuario o empresa y lleguen a un acuerdo, intercambien sus materiales o deshechos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="service-item bg-light d-flex p-4 IconosLateralesPServicios">
+                        <i><img src="images/IconoCompra.png" width="50px" height="50px"></i>
+                        <div>
+                            <h5 class="text-uppercase mb-3">Compra</h5>
+                            <p>Encuentra un material o residuo para comprar, haz el trato con otro usuario o con una empresa</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services End -->
+
+    <%- include("./partials/footer.ejs"); %>
+
+</body>
+</html>
