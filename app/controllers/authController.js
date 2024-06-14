@@ -4,26 +4,74 @@ import conexion from '../database/db.js';
 import {promisify} from 'util';
 
 //procedimiento para registrarnos
-const register = async (req, res)=>{    
+const register = async (req, res) => {    
     try {
-        const identificacion = req.body.id
-        const nombre = req.body.names
-        const direccion = req.body.dress
-        const telefono = req.body.phon
-        const correo = req.body.mail
-        const contrasena = req.body.pass
-        const rol = req.body.rol
-        const estado = 'Activo'
-        let passHash = await bcryptjs.hash(contrasena, 8)    
-        //console.log(passHash)   
-        conexion.query('INSERT INTO usuario SET ?', {identificacion:identificacion, nombres:nombre, direccion:direccion, telefono:telefono, correo:correo, rol:rol, estado:estado, contrasena:passHash}, (error, results)=>{
-            if(error){console.log(error)}
-            res.redirect('/login')
-        })
+        const { id: identificacion, names: nombre, dress: direccion, phon: telefono, mail: correo, pass: contrasena, rol } = req.body;
+        const estado = 'Activo';
+        const passHash = await bcryptjs.hash(contrasena, 8);
+
+        // Inserta en la base de datos
+        conexion.query('INSERT INTO usuario SET ?', {
+            identificacion,
+            nombres: nombre,
+            direccion,
+            telefono,
+            correo,
+            rol,
+            estado,
+            contrasena: passHash
+        }, (error, results) => {
+            if (error) {
+                // Verifica si el error es de duplicado
+                if (error.code === 'ER_DUP_ENTRY') {
+                    res.render('login', {
+                        alert: true,
+                        alertTitle: "Advertencia",
+                        alertMessage: "La identificación, correo o teléfono ya se encuentran registrados",
+                        alertIcon: 'info',
+                        showConfirmButton: true,
+                        timer: false,
+                        ruta: 'login'
+                    });
+                } else {
+                    console.log(error);
+                    res.render('login', {
+                        alert: true,
+                        alertTitle: "Error",
+                        alertMessage: "Ocurrió un error al registrar el usuario",
+                        alertIcon: 'error',
+                        showConfirmButton: true,
+                        timer: false,
+                        ruta: 'login'
+                    });
+                }
+            } else {
+                res.render('login', {
+                    alert: true,
+                    alertTitle: "Éxito",
+                    alertMessage: "Usuario creado correctamente",
+                    alertIcon: 'success',
+                    showConfirmButton: true,
+                    timer: false,
+                    ruta: 'login'
+                });
+            }
+        });
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        res.render('login', {
+            alert: true,
+            alertTitle: "Error",
+            alertMessage: "Ocurrió un error al registrar el usuario",
+            alertIcon: 'error',
+            showConfirmButton: true,
+            timer: false,
+            ruta: 'login'
+        });
     }       
 }
+
+
 
 const login = async (req, res) => {
     try {
