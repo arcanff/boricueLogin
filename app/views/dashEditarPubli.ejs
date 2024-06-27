@@ -12,46 +12,43 @@
             <div class="col-md-6">
                 <div class="form-container">
                     <h2 class="text-center mb-4">Editar tu publicacion</h2>
-                    <form>
+                    <!-- Formulario de edición de publicaciones -->
+                    <form method="POST" name="productos" action="/edit/<%= product.idProducto %>" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="foto">Sube una foto de tu producto</label>
-                            <input type="file" class="form-control" id="foto" name="foto">
+                            <input type="file" class="form-control" id="foto" name="imagen">
+                            <img src="/images/<%= product.imagen %>" alt="Imagen actual" style="max-width: 100px;">
                         </div>
                         <div class="form-group">
                             <label for="titulo">Nombra tu publicacion</label>
-                            <input type="text" class="form-control" id="titulo" name="titulo">
+                            <input type="text" class="form-control" id="titulo" name="nombre" value="<%= product.nombre %>">
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Describe tu producto</label>
-                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"><%= product.descripcion %></textarea>
                         </div>
                         <div class="form-group">
                             <label for="categoria">Tipo de producto</label>
-                            <select class="form-control" id="categoria" name="categoria">
-                                <option value="">Seleccione un tipo</option>
-                                <option value="categoria1">Papel</option>
-                                <option value="categoria2">Aluminio</option>
-                                <option value="categoria3">Otro (Especifique en la descripcion)</option>
+                            <select class="form-control" id="categoria" name="tipo">
+                                <option value="Papel" <%= product.tipo === 'Papel' ? 'selected' : '' %>>Papel</option>
+                                <option value="Aluminio" <%= product.tipo === 'Aluminio' ? 'selected' : '' %>>Aluminio</option>
+                                <option value="Cuero" <%= product.tipo === 'Cuero' ? 'selected' : '' %>>Cuero</option>
+                                <option value="Otro" <%= product.tipo === 'Otro' ? 'selected' : '' %>>Otro</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="categoria">Categoría de la publicacion</label>
                             <select class="form-control" id="categoria" name="categoria">
-                                <option value="">Seleccione una categoría</option>
-                                <option value="categoria1">Venta</option>
-                                <option value="categoria2">Intercambio</option>
-                                <option value="categoria3">Donacion</option>
+                                <option value="Venta" <%= product.categoria === 'Venta' ? 'selected' : '' %>>Venta</option>
+                                <option value="Intercambio" <%= product.categoria === 'Intercambio' ? 'selected' : '' %>>Intercambio</option>
+                                <option value="Donacion" <%= product.categoria === 'Donacion' ? 'selected' : '' %>>Donacion</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="contacto">Número de Contacto</label>
-                            <input type="tel" class="form-control" id="contacto" name="contacto">
-                        </div>
-                        <div class="form-group">
                             <label for="contacto">Precio del articulo (Solo si es para venta)</label>
-                            <input type="number" class="form-control" id="contacto" name="contacto">
+                            <input type="number" class="form-control" id="Precio" name="precio" value="<%= product.precio %>">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Modificar publicacion</button>
+                        <button type="submit" class="btn btn-primary btn-block">Editar publicacion</button>
                     </form>
                 </div>
             </div>
@@ -60,6 +57,20 @@
     <br> 
 
     <%- include("./partials/dashFooter.ejs"); %>
+
+    <% if(alert) { %>
+        <script>
+        Swal.fire({
+            title: '<%= alertTitle %>',
+            text:'<%= alertMessage %>',
+            icon:'<%= alertIcon %>',
+            showConfirmButton: <%= showConfirmButton %>,
+            timer: <%= timer %>
+        }).then(()=>{
+            window.location = '/<%= ruta %>'
+        })
+        </script>
+    <% } %>
 
 </body>
 </html>

@@ -73,7 +73,7 @@ const register = async (req, res) => {
 
 
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
     try {
         const mail = req.body.mail;
         const pass = req.body.pass;
@@ -107,49 +107,46 @@ const login = async (req, res) => {
                         expiresIn: process.env.JWT_TIEMPO_EXPIRA
                     });
 
-                    console.log("TOKEN JWT generado:", token); // Verifica el token generado
-
                     const cookiesOptions = {
                         expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
                         httpOnly: true
                     };
                     res.cookie('jwt', token, cookiesOptions);
-                    res.render('dashInicio', {
-                        alert: true,
-                        alertTitle: "Conexión exitosa",
-                        alertMessage: "¡Inicio de sesión correcto!",
-                        alertIcon: 'success',
-                        showConfirmButton: false,
-                        timer: 800,
-                        ruta: ''
-                    });
+
+                    req.user = { idUsuario }; // Asegúrate de pasar el idUsuario a req.user para usarlo en getProductsByUser
+                    next(); // Llamar a next() para pasar al siguiente middleware
                 }
             });
         }
     } catch (error) {
-        console.log("Error en el inicio de sesión:", error);
+        console.error(error);
+        res.render('login', {
+            alert: true,
+            alertTitle: "Error",
+            alertMessage: "Ocurrió un error al intentar iniciar sesión",
+            alertIcon: 'error',
+            showConfirmButton: true,
+            timer: false,
+            ruta: 'login'
+        });
     }
 };
+
+
 
 const isAuthenticated = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
             const decodificada = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRETO);
-            console.log("Token decodificado:", decodificada);
-            const identificadorUnico = req.body.mail ? 'correo' : 'telefono'; // Ajusta según la disponibilidad de datos en el token
-            console.log("Identificador único:", identificadorUnico);
-            console.log("ID del usuario decodificado:", decodificada.idUsuario);
             conexion.query('SELECT * FROM usuario WHERE idUsuario = ?', [decodificada.idUsuario], (error, results) => {
                 if (error) {
                     console.log("Error en la consulta:", error);
                     return next();
                 }
                 if (!results || results.length === 0) {
-                    console.log("Usuario no encontrado");
                     return next();
                 }
                 req.user = results[0];
-                console.log("Usuario autenticado:", req.user);
                 return next();
             });
         } catch (error) {
@@ -157,10 +154,10 @@ const isAuthenticated = async (req, res, next) => {
             return next();
         }
     } else {
-        console.log("No se encontró cookie de autenticación");
         res.redirect('/login');
     }
 };
+
 
 const logout = (req, res)=>{
     res.clearCookie('jwt')   

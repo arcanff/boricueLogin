@@ -12,14 +12,15 @@
             <div class="col-md-6">
                 <div class="form-container">
                     <h2 class="text-center mb-4">Crear publicacion</h2>
-                    <form>
+                    <!-- Formulario nuevas publicaciones -->
+                    <form method="POST" name="productos" action="/upload" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="foto">Sube una foto de tu producto</label>
-                            <input type="file" class="form-control" id="foto" name="foto">
+                            <input type="file" class="form-control" id="foto" name="imagen">
                         </div>
                         <div class="form-group">
                             <label for="titulo">Nombra tu publicacion</label>
-                            <input type="text" class="form-control" id="titulo" name="titulo">
+                            <input type="text" class="form-control" id="titulo" name="nombre">
                         </div>
                         <div class="form-group">
                             <label for="descripcion">Describe tu producto</label>
@@ -27,29 +28,26 @@
                         </div>
                         <div class="form-group">
                             <label for="categoria">Tipo de producto</label>
-                            <select class="form-control" id="categoria" name="categoria">
+                            <select class="form-control" id="categoria" name="tipo">
                                 <option value="">Seleccione un tipo</option>
-                                <option value="categoria1">Papel</option>
-                                <option value="categoria2">Aluminio</option>
-                                <option value="categoria3">Otro (Especifique en la descripcion)</option>
+                                <option value="Papel">Papel</option>
+                                <option value="Aluminio">Aluminio</option>
+                                <option value="Cuero">Cuero</option>
+                                <option value="Otro">Otro</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="categoria">Categoría de la publicacion</label>
                             <select class="form-control" id="categoria" name="categoria">
                                 <option value="">Seleccione una categoría</option>
-                                <option value="categoria1">Venta</option>
-                                <option value="categoria2">Intercambio</option>
-                                <option value="categoria3">Donacion</option>
+                                <option value="Venta">Venta</option>
+                                <option value="Intercambio">Intercambio</option>
+                                <option value="Donacion">Donacion</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="contacto">Número de Contacto</label>
-                            <input type="tel" class="form-control" id="contacto" name="contacto">
-                        </div>
-                        <div class="form-group">
                             <label for="contacto">Precio del articulo (Solo si es para venta)</label>
-                            <input type="number" class="form-control" id="contacto" name="contacto">
+                            <input type="number" class="form-control" id="Precio" name="precio">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Crear publicacion</button>
                     </form>
@@ -60,6 +58,20 @@
     <br> 
 
     <%- include("./partials/dashFooter.ejs"); %>
+
+    <% if(alert) { %>
+        <script>
+        Swal.fire({
+            title: '<%= alertTitle %>',
+            text:'<%= alertMessage %>',
+            icon:'<%= alertIcon %>',
+            showConfirmButton: <%= showConfirmButton %>,
+            timer: <%= timer %>
+        }).then(()=>{
+            window.location = '/<%= ruta %>'
+        })
+        </script>
+    <% } %>
 
 </body>
 </html>
