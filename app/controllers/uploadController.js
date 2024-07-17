@@ -1,21 +1,24 @@
-import fs from 'fs';
-import conexion from '../database/db.js';
-import { promisify } from 'util';
-import multer from 'multer';
-import path from 'path';
+import fs from 'fs'; // Módulo para trabajar con el sistema de archivos
+import conexion from '../database/db.js'; // Importa la conexión a la base de datos
+import { promisify } from 'util'; // Módulo para convertir funciones de callback en promesas
+import multer from 'multer'; // Módulo para manejar la subida de archivos
+import path from 'path'; // Módulo para trabajar con rutas de archivos
 import authController from './authController.js'; // Importa el controlador de autenticación
 
+// Configuración del almacenamiento de multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'app/public/images');
+        cb(null, 'app/public/images'); // Define la carpeta de destino para los archivos subidos
     },
     filename: (req, file, cb) => {
-        cb(null, `${Date.now()}${path.extname(file.originalname)}`);
+        cb(null, `${Date.now()}${path.extname(file.originalname)}`); // Define el nombre del archivo subido
     }
 }); 
 
+// Configuración de multer para un solo archivo con el nombre 'imagen'
 const upload = multer({ storage }).single('imagen');
 
+// Función para crear un producto
 const createProduct = async (req, res) => {
     upload(req, res, async (err) => {
         if (err) {
@@ -35,11 +38,18 @@ const createProduct = async (req, res) => {
             const { nombre, descripcion, tipo, categoria, precio } = req.body;
             const imagen = req.file ? req.file.filename : null;
 
-            if (!nombre || !descripcion || !tipo || !categoria) {
+            // Verificar que todos los campos requeridos estén completos, incluyendo la imagen
+            if (!nombre || !descripcion || !tipo || !categoria || !imagen) {
+                let mensajeError = "Por favor, complete todos los campos requeridos";
+                
+                if (!imagen) {
+                    mensajeError = "Por favor, agregue una imagen del producto";
+                }
+
                 return res.render('dashCrearPubli', {
                     alert: true,
                     alertTitle: "Error",
-                    alertMessage: "Por favor, complete todos los campos requeridos",
+                    alertMessage: mensajeError,
                     alertIcon: 'error',
                     showConfirmButton: true,
                     timer: false,
@@ -51,9 +61,11 @@ const createProduct = async (req, res) => {
 
             // Verificar la categoría seleccionada y ajustar el precio
             if (categoria === 'Intercambio') {
-                precioFinal = '$ INTERCAMBIO';
+                precioFinal = 'CAMBIO';
             } else if (categoria === 'Donacion') {
-                precioFinal = '$ GRATIS';
+                precioFinal = 'GRATIS';
+            } else if (categoria === 'Venta') {
+                precioFinal = '$' + precio;
             }
 
             // Obtener el ID del usuario desde req.user
@@ -89,6 +101,7 @@ const createProduct = async (req, res) => {
     });
 };
 
+// Función para editar un producto
 const editProduct = async (req, res, next) => {
     upload(req, res, async (err) => {
         if (err) {
@@ -124,9 +137,11 @@ const editProduct = async (req, res, next) => {
             let precioFinal = precio;
 
             if (categoria === 'Intercambio') {
-                precioFinal = '$ INTERCAMBIO';
+                precioFinal = 'CAMBIO';
             } else if (categoria === 'Donacion') {
-                precioFinal = '$ GRATIS';
+                precioFinal = 'GRATIS';
+            } else if (categoria === 'Venta') {
+                precioFinal = '$' + precio;
             }
 
             let query = 'UPDATE producto SET nombre = ?, descripcion = ?, tipo = ?, categoria = ?, precio = ?';
@@ -157,8 +172,7 @@ const editProduct = async (req, res, next) => {
 
             await promisify(conexion.query).bind(conexion)(query, values);
 
-            // Después de editar correctamente el producto, continuar con el siguiente middleware o respuesta
-            return next();
+            return next(); // Después de editar correctamente el producto, continuar con el siguiente middleware o respuesta
         } catch (error) {
             console.log(error);
             res.render('dashEditarPubli', {
@@ -174,6 +188,7 @@ const editProduct = async (req, res, next) => {
     });
 };
 
+// Función para eliminar un producto
 const deleteProduct = async (req, res) => {
     try {
         const idProducto = req.params.idProducto;
@@ -203,7 +218,6 @@ const deleteProduct = async (req, res) => {
         res.redirect('/Publicaciones');
     }
 };
-
 
 export default {
     createProduct,

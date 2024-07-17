@@ -1,14 +1,14 @@
-import jwt from 'jsonwebtoken';
-import bcryptjs from 'bcryptjs';
-import conexion from '../database/db.js';
-import {promisify} from 'util';
+import jwt from 'jsonwebtoken'; // Módulo para trabajar con JSON Web Tokens
+import bcryptjs from 'bcryptjs'; // Módulo para encriptar contraseñas
+import conexion from '../database/db.js'; // Importa la conexión a la base de datos
+import { promisify } from 'util'; // Módulo para convertir funciones de callback en promesas
 
-//procedimiento para registrarnos
+// Procedimiento para registrarse
 const register = async (req, res) => {    
     try {
         const { id: identificacion, names: nombre, dress: direccion, phon: telefono, mail: correo, pass: contrasena, rol } = req.body;
         const estado = 'Activo';
-        const passHash = await bcryptjs.hash(contrasena, 8);
+        const passHash = await bcryptjs.hash(contrasena, 8); // Encripta la contraseña con bcrypt
 
         // Inserta en la base de datos
         conexion.query('INSERT INTO usuario SET ?', {
@@ -71,8 +71,7 @@ const register = async (req, res) => {
     }       
 }
 
-
-
+// Procedimiento para iniciar sesión
 const login = async (req, res, next) => {
     try {
         const mail = req.body.mail;
@@ -104,16 +103,16 @@ const login = async (req, res, next) => {
                     // Inicio de sesión OK
                     const idUsuario = results[0].idUsuario;
                     const token = jwt.sign({ idUsuario: idUsuario }, process.env.JWT_SECRETO, {
-                        expiresIn: process.env.JWT_TIEMPO_EXPIRA
+                        expiresIn: process.env.JWT_TIEMPO_EXPIRA // Tiempo de expiración del token
                     });
 
                     const cookiesOptions = {
-                        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000),
-                        httpOnly: true
+                        expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000), // Tiempo de expiración de la cookie
+                        httpOnly: true // La cookie no puede ser accedida desde el cliente
                     };
                     res.cookie('jwt', token, cookiesOptions);
 
-                    req.user = { idUsuario }; // Asegúrate de pasar el idUsuario a req.user para usarlo en getProductsByUser
+                    req.user = { idUsuario }; // Pasa el idUsuario a req.user para usarlo en getProductsByUser
                     next(); // Llamar a next() para pasar al siguiente middleware
                 }
             });
@@ -132,8 +131,7 @@ const login = async (req, res, next) => {
     }
 };
 
-
-
+// Verificar si el usuario está autenticado
 const isAuthenticated = async (req, res, next) => {
     if (req.cookies.jwt) {
         try {
@@ -146,7 +144,7 @@ const isAuthenticated = async (req, res, next) => {
                 if (!results || results.length === 0) {
                     return next();
                 }
-                req.user = results[0];
+                req.user = results[0]; // Guarda la información del usuario en req.user
                 return next();
             });
         } catch (error) {
@@ -158,12 +156,16 @@ const isAuthenticated = async (req, res, next) => {
     }
 };
 
-
-const logout = (req, res)=>{
-    res.clearCookie('jwt')   
-    return res.redirect('/')
+// Cerrar sesión
+const logout = (req, res) => {
+    res.clearCookie('jwt'); // Elimina la cookie del token JWT
+    return res.redirect('/'); // Redirige a la página principal
 }
 
+// Exportar las funciones
 export default {
-    register, login, isAuthenticated, logout
-}
+    register, 
+    login, 
+    isAuthenticated, 
+    logout
+};

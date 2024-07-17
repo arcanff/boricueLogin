@@ -1,0 +1,51 @@
+
+
+Modulos usados
+
+bcryptjs:
+Biblioteca para el hashing de contraseñas en JavaScript.
+Documentación: https://www.npmjs.com/package/bcryptjs
+
+body-parser:
+Middleware de Express para analizar cuerpos de solicitudes HTTP.
+Documentación: https://www.npmjs.com/package/body-parser
+
+cookie-parser:
+Middleware de Express para analizar cookies.
+Documentación: https://www.npmjs.com/package/cookie-parser
+
+dotenv:
+Carga variables de entorno desde un archivo .env a process.env.
+Documentación: https://www.npmjs.com/package/dotenv
+
+ejs:
+Motor de plantillas de JavaScript para generar HTML con datos dinámicos.
+Documentación: https://www.npmjs.com/package/ejs
+
+express:
+Framework web para Node.js, utilizado para construir aplicaciones web y APIs.
+Documentación: https://www.npmjs.com/package/express
+
+express-session:
+Middleware para gestionar sesiones en aplicaciones Express.
+Documentación: https://www.npmjs.com/package/express-session
+
+jsonwebtoken:
+Biblioteca para trabajar con JSON Web Tokens (JWT) en Node.js.
+Documentación: https://www.npmjs.com/package/jsonwebtoken
+
+multer:
+Middleware de Node.js para manejar multipart/form-data, principalmente para la carga de archivos.
+Documentación: https://www.npmjs.com/package/multer
+
+mysql:
+Biblioteca de Node.js para interactuar con bases de datos MySQL.
+Documentación: https://www.npmjs.com/package/mysql
+
+node-fetch:
+Implementación de window.fetch para Node.js, utilizada para realizar solicitudes HTTP.
+Documentación: https://www.npmjs.com/package/node-fetch
+
+path:
+Módulo para manejar y transformar rutas de archivos y directorios.
+Documentación: https://www.npmjs.com/package/path

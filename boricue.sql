@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2024 at 10:27 PM
+-- Generation Time: Jul 17, 2024 at 10:31 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -104,6 +104,15 @@ CREATE TABLE `producto` (
   `usuario_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `imagen`, `nombre`, `categoria`, `tipo`, `precio`, `descripcion`, `usuario_id`) VALUES
+(1, '1721238644473.png', 'upload testing [Sell]', 'Venta', 'Cuero', '$10000', 'upload test #1', 1),
+(2, '1721238814720.png', 'upload testing [Trade]', 'Intercambio', 'Papel', 'CAMBIO', 'upload test #2', 1),
+(3, '1721239024850.png', 'upload testing [Donation]', 'Donacion', 'Cuero', 'GRATIS', 'upload test #3 ', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -120,13 +129,6 @@ CREATE TABLE `regproducto` (
   `categoria` varchar(15) NOT NULL,
   `estado` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `regproducto`
---
-
-INSERT INTO `regproducto` (`idRegProducto`, `idProducto`, `cantIni`, `cantFin`, `longitud`, `fecha`, `categoria`, `estado`) VALUES
-(1, 1, 45, 0, 15, '01-05-2024', 'Cuero', 'Finalizado');
 
 -- --------------------------------------------------------
 
@@ -145,6 +147,13 @@ CREATE TABLE `usuario` (
   `rol` varchar(15) NOT NULL,
   `estado` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `usuario`
+--
+
+INSERT INTO `usuario` (`idUsuario`, `identificacion`, `nombres`, `direccion`, `telefono`, `correo`, `contrasena`, `rol`, `estado`) VALUES
+(1, '1', 'testing', '1', '1', 'tester@test.com', '$2a$08$qyuof6kymqqR3YrmWXsP9uN4woQ0hscHvRmSGABajsNG9PIntDXFC', 'Usuario', 'Activo');
 
 --
 -- Indexes for dumped tables
@@ -221,7 +230,7 @@ ALTER TABLE `proceso`
 -- AUTO_INCREMENT for table `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `regproducto`
@@ -233,7 +242,7 @@ ALTER TABLE `regproducto`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

@@ -7,7 +7,7 @@
 }
 
 body{
-    background-image: url(../images/bosque.jpg);
+    background-image: url(../images/bosque.jpg); /* Imagen de fondo para la vista login */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
